@@ -1,6 +1,10 @@
 pipeline {
-    agent any
-
+    agent { 
+        node { 
+            label 'ROBOSHOP' 
+        } 
+    }
+   // Following is build section
     stages {
         stage('Build') {
             steps {
@@ -30,6 +34,18 @@ pipeline {
                  """
             }
             }
+        }
+    }
+ //   Post build section
+        post { 
+        always { 
+            echo 'I will always say Hello again!'
+        }
+        success { 
+            echo 'I will run when success'
+        }
+        failure { 
+            echo 'I will Run when it is failed'
         }
     }
 }
